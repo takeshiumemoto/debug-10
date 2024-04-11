@@ -1,0 +1,13 @@
+<h1>Books</h1>
+<table>
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+  <% @books.each do |book| %>
+      <tr>
+      <td><%= image_tag book.get_image %></td>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+      </tr>
+  <% end %>
+</table>
