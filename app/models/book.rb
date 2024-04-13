@@ -7,6 +7,7 @@ class Book < ApplicationRecord
     
     
     
+    
     def get_image
         if image.attached?
          image
@@ -14,5 +15,8 @@ class Book < ApplicationRecord
         'no_image.jpg'
         end
     end
-end
+end 
+
+
+
 

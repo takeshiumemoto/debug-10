@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
+   
     <title>Bookers</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/5bd3e9a1d7.js" crossorigin="anonymous"></script>
   </head>
-
-  <body>
-    <header>
-      
+ 
+    <header class="shadow-sm">
+       
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <%= link_to root_path, class: 'navbar-brand' do %>
+        <h1>Bookers</h1>
+        <% end %>
+        <div class="container">
+            <ul class="navbar-nav ml-auto">
+   
     <% if user_signed_in? %>
-      <li>
-        <%= link_to 'Home',user_path(current_user) %>
+       <ul class ="nav">
+      <li class="nav-item">
+        <%= link_to 'Home',user_path(current_user),class: 'nav-link text-light' %>
       </li>
-      <li>
-        <%= link_to 'Users',users_path %>
+      <li class="nav-item">
+        <%= link_to 'Users',users_path,class: 'nav-link text-light' %>
       </li>
-      <li>
-        <%= link_to 'Books',books_path %>
+      <li class="nav-item">
+        <%= link_to 'Books',books_path,class: 'nav-link text-light' %> 
       </li>  
-      <li>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %> 
+      <li class="nav-item">
+        <%= link_to "Log out", destroy_user_session_path, method: :delete,class: 'nav-link text-light' %> 
       </li>
     <% else %>
-      <li>
-        <%= link_to "Home"%>
+      <li class="nav-item">
+        <%= link_to "Home",root_path,class: 'nav-link text-light' %>
       </li>
-      <li>
-        <%= link_to "About",homes_about_path %> 
+      <li class="nav-item">
+        <%= link_to "About",homes_about_path,class: 'nav-link text-light' %> 
       </li>
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
+      <li class="nav-item">
+        <%= link_to "Sign up", new_user_registration_path,class: 'nav-link text-light' %>
       </li>
-      <li>
-        <%= link_to "Sign in", new_user_session_path %>
+      <li class="nav-item">
+        <%= link_to "Sign in", new_user_session_path,class: 'nav-link text-light'%>
       </li>
     <% end %>
-  </header>
-    <%= yield %>
+   </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
   </body>
+  <%= yield %>
 </html>

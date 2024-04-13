@@ -77,6 +77,12 @@ module.exports = function(api) {
           async: false
         }
       ]
+       [
+　　　　{
+        "presets": ["@babel/preset-env"],
+        "plugins": ["@babel/plugin-proposal-private-methods"]
+    　　}
+    　　]
     ].filter(Boolean)
   }
 }

@@ -5,7 +5,9 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
   has_one_attached :image
   has_many :books, dependent: :destroy
-
+    validates :title, presence: true
+    validates :body, presence: true
+    
 
 
  def get_image
