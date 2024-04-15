@@ -6,8 +6,8 @@ devise_for :users
   end
 resources :users, only: [:index, :show,:edit,:update]
 resources :books
-get 'homes/about' => 'homes#about'
-root to: "homes#top"
+get 'home/about' => 'home#about'
+root to: "home#top"
 
 
 end

@@ -3,18 +3,18 @@ class User < ApplicationRecord
 # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
-  has_one_attached :image
+  has_one_attached :profile_image
   has_many :books, dependent: :destroy
-    validates :title, presence: true
-    validates :body, presence: true
+    validates :name, presence: true, length:{ minimum:2,maximum:20},uniqueness: true
+    validates :introduction,length:{maximum:50}
     
 
 
- def get_image
-    if image.attached?
-      image
+   def get_image
+    if profile_image.attached?
+       profile_image
     else
       'no_image.jpg'
     end
- end
+   end
 end

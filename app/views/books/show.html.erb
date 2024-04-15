@@ -1,13 +1,16 @@
 <body class="d-flex flex-column vh-100">
   <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="col-md-3">
         <h1 class="font-weight-bold">User info</h1>
-        <div><%= image_tag current_user.get_image %></div> 
-        <div class="font-weight-bold">name: <%= current_user.name %></div>
-        <div class="font-weight-bold">introduction: <%= current_user.introduction %></div>
-        <div><%= link_to "プロフィール編集", edit_user_path(current_user), class: "font-weight-bold" %></div>
-        <h1 class="font-weight-bold">投稿</h1>
+        <div><%= image_tag @book.user.get_image,width: 100, height: 100 %></div>
+        <div class="font-weight-bold">name: <%= @book.user.name %></div>
+        <div class="font-weight-bold">introduction: <%= @book.user.introduction %></div>
+        <div class="btn btn-outline-secondary btn-block"><%= link_to edit_user_path(@book.user), class: "font-weight-bold" do %>
+          <i class="fa-solid fa-user-gear"></i>
+          </div>
+          <% end %>
+        <h1 class="font-weight-bold">New book</h1>
         <% if @book.errors.any? %>
           <p><%= @book.errors.count %> errors prohibited this obj from being saved:</p>
           <ul>
@@ -16,33 +19,37 @@
             <% end %>
           </ul>
         <% end %>    
-    
-        <%= form_with model: @book,local:true do |f| %>
-          <h4 class="font-weight-bold">title</h4>
-          <%= f.text_field :title, value: "", class: "form-control" %>
-          <h4 class="font-weight-bold">opinion</h4>
-          <%= f.text_area :body, value: "", class: "form-control" %>
-          <%= f.submit '投稿', class: "btn btn-primary mt-3" %>
-        <% end %>     
-      </div>
+        <%= form_with model: Book.new, local: true do |f| %>
+        <h4 class="font-weight-bold">title</h4>
+        <%= f.text_field :title,value: "", class: "form-control" %>
+        <h4 class="font-weight-bold">opinion</h4>
+        <%= f.text_area :body,value: "", class: "form-control" %>
+        <%= button_tag 'Create Book', class: "btn btn-primary mt-3", type: "submit" %>
+        <% end %>    
+        </div>
       
-<div class="col-9">
+<div class="col-md-8 offset-md-1">
   <h1>Book detail</h1>
         
   <table class="table">
     <tr>
       <td>
-      <%= image_tag @user.get_image %>
+      <%= image_tag @book.user.get_image,width: 100, height: 100 %>
       <div class="font-weight-bold">
-        <%= link_to @user.name, user_path(@user.id), class: "font-size-small" %>
+        <%= link_to @book.user.name, user_path(@book.user), class: "font-size-small" %>
       </div>
     </td>
     <td><%= @book.title %></td>
     <td><%= @book.body %></td>
+    <% if @book.user && @book.user.id == current_user.id %>
+    <td><%= link_to "Edit",edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
+    <td><%= link_to "Destroy",book_path(@book), method: :delete,class: "btn btn-sm btn-danger"%> </td>
+    <% end %>
   </tr>
 </table>
       </div>
-      
+      </div>
+      </div>
     </div>
   </div>
 </body>
