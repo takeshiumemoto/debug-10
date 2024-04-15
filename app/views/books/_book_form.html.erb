@@ -1,7 +1,7 @@
  <!--投稿フォーム　エラーメッセージ-->
         
  <h1 class="font-weight-bold">New book</h1>
-<% if book.errors.any? %>
+  <% if book.errors.any? %>
     <p><%= book.errors.count %> errors prohibited this obj from being saved:</p>
         <ul>
         <% book.errors.full_messages.each do |message| %>
@@ -11,10 +11,10 @@
 <% end %>    
     <!--投稿フォーム-->
 <%= form_with model: book do |f| %>
-<h4 class="font-weight-bold">title</h4>
-    <%= f.text_field :title, class: "form-control" %>
-<h4 class="font-weight-bold">opinion</h4>
-    <%= f.text_area :body, class: "form-control" %>
-    <%= button_tag 'Create Book', class: "btn btn-primary mt-3", type: "submit" %>
+    <h4 class="font-weight-bold">title</h4>
+        <%= f.text_field :title, class: "form-control" %>
+    <h4 class="font-weight-bold">opinion</h4>
+        <%= f.text_area :body, class: "form-control" %>
+            <%= button_tag 'Create Book', class: "btn btn-primary mt-3", type: "submit" %>
 <% end %>     
          
