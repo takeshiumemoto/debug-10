@@ -58,3 +58,4 @@ group :development, :test do
   gem 'pry'
 end
 gem 'net-smtp'
+gem 'acts-as-taggable-on'

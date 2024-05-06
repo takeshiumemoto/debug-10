@@ -1,7 +1,15 @@
 class BooksController < ApplicationController
     before_action :set_book,only:[:show,:edit,:destroy,:update]
     def index
-        @books = Book.all
+        if params[:latest]
+         @books = Book.latest
+        elsif params[:old]
+         @books = Book.old
+        elsif params[:star_count]
+         @books = Book.star_count
+        else
+          @books = Book.all
+        end
         @book = Book.new 
     end 
     def new
@@ -47,7 +55,7 @@ class BooksController < ApplicationController
     private 
     
     def book_params
-        params.require(:book).permit(:title,:body)
+        params.require(:book).permit(:title,:body,:star)
     end     
     def set_book
         @book = Book.find(params[:id])
